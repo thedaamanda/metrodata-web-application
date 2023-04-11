@@ -4,7 +4,7 @@ using WebApp.Repositories.Contracts;
 
 namespace WebApp.Repositories;
 
-public class UniversityRepository : IUniversityRepository
+public class UniversityRepository : IRepository<int, University>
 {
     private readonly MyContext _context;
 

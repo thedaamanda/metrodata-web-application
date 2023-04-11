@@ -13,7 +13,7 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 builder.Services.AddDbContext<MyContext>(options => options.UseSqlServer(connectionString));
 
 // Configure Services for Dependency Injection
-builder.Services.AddScoped<IUniversityRepository, UniversityRepository>();
+builder.Services.AddScoped<UniversityRepository>();
 
 var app = builder.Build();
 
