@@ -20,22 +20,31 @@ public class MyContext : DbContext
             .OnDelete(DeleteBehavior.NoAction);
 
         modelBuilder.Entity<Education>()
-            .HasOne(p => p.Profiling)
-            .WithOne(e => e.Education)
-            .HasForeignKey<Profiling>(a => a.EducationId)
-            .OnDelete(DeleteBehavior.Cascade);
+            .HasOne<University>(e => e.University)
+            .WithMany(u => u.Educations)
+            .HasForeignKey(e => e.UniversityId)
+            .OnDelete(DeleteBehavior.NoAction);
 
         modelBuilder.Entity<Profiling>()
-            .HasOne(e => e.Employee)
-            .WithOne(p => p.Profiling)
-            .HasForeignKey<Employee>(a => a.NIK)
-            .OnDelete(DeleteBehavior.Cascade);
+            .HasKey(p => p.EducationId);
+
+        modelBuilder.Entity<Education>()
+            .HasOne<Profiling>(e => e.Profiling)
+            .WithOne(p => p.Education);
+
+        modelBuilder.Entity<Profiling>()
+            .HasKey(p => p.EmployeeNIK);
 
         modelBuilder.Entity<Employee>()
-            .HasOne(a => a.Account)
-            .WithOne(e => e.Employee)
-            .HasForeignKey<Account>(a => a.EmployeeNIK)
-            .OnDelete(DeleteBehavior.Cascade);
+            .HasOne<Profiling>(e => e.Profiling)
+            .WithOne(p => p.Employee);
+
+        modelBuilder.Entity<Profiling>()
+            .HasKey(p => p.EmployeeNIK);
+
+        modelBuilder.Entity<Employee>()
+            .HasOne<Account>(e => e.Account)
+            .WithOne(a => a.Employee);
 
         modelBuilder.Entity<AccountRole>()
                 .HasKey(ar => ar.Id);
