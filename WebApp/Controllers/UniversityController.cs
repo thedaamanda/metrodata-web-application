@@ -1,18 +1,73 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using WebApp.Models;
+using WebApp.Repositories.Contracts;
 using Microsoft.AspNetCore.Mvc;
-
-// For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace WebApp.Controllers;
 
 public class UniversityController : Controller
 {
-    // GET: /<controller>/
+    private readonly IUniversityRepository _universityRepository;
+
+    public UniversityController(IUniversityRepository universityRepository)
+    {
+        _universityRepository = universityRepository;
+    }
+
+    [HttpGet]
     public IActionResult Index()
     {
+        var universities = _universityRepository.GetAll();
+        return View(universities);
+    }
+
+    [HttpGet]
+    public IActionResult Details(int id)
+    {
+        var university = _universityRepository.GetById(id);
+        return View(university);
+    }
+
+    [HttpGet]
+    public IActionResult Create()
+    {
         return View();
+    }
+
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public IActionResult Create(University university)
+    {
+        _universityRepository.Insert(university);
+        return RedirectToAction("Index");
+    }
+
+    [HttpGet]
+    public IActionResult Edit(int id)
+    {
+        var entity = _universityRepository.GetById(id);
+        return View(entity);
+    }
+
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public IActionResult Edit(University university)
+    {
+        _universityRepository.Update(university);
+        return RedirectToAction("Index");
+    }
+
+    [HttpGet]
+    public IActionResult Delete(int id)
+    {
+        var entity = _universityRepository.GetById(id);
+        return View(entity);
+    }
+
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public IActionResult Remove(int id)
+    {
+        _universityRepository.Delete(id);
+        return RedirectToAction("Index");
     }
 }

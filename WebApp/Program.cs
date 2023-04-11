@@ -1,5 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using WebApp.Context;
+using WebApp.Repositories;
+using WebApp.Repositories.Contracts;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,6 +11,9 @@ builder.Services.AddControllersWithViews();
 // Configure Context to Sql Server Database
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<MyContext>(options => options.UseSqlServer(connectionString));
+
+// Configure Services for Dependency Injection
+builder.Services.AddScoped<IUniversityRepository, UniversityRepository>();
 
 var app = builder.Build();
 
@@ -32,4 +37,3 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();
-
