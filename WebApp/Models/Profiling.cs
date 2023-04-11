@@ -6,7 +6,7 @@ namespace WebApp.Models;
 [Table("tb_tr_profilings")]
 public class Profiling
 {
-    [Key, Column("employee_nik", TypeName = "nchar(5)")]
+    [Key, Column("employee_nik", TypeName = "char(5)")]
     public string EmployeeNIK { get; set; }
     [Column("education_id")]
     public int EducationId { get; set; }

@@ -9,11 +9,11 @@ namespace WebApp.Models;
 [Table("tb_m_employees")]
 public class Employee
 {
-    [Key, Column("nik", TypeName = "nchar(5)")]
+    [Key, Column("nik", TypeName = "char(5)")]
     public string NIK { get; set; }
-    [Column("first_name"), MaxLength(50)]
+    [Column("first_name", TypeName = "varchar(50)")]
     public string FirstName { get; set; }
-    [Column("last_name"), MaxLength(50)]
+    [Column("last_name", TypeName = "varchar(50)")]
     public string? LastName { get; set; }
     [Column("birthdate")]
     public DateTime BirthDate { get; set; }
@@ -21,9 +21,9 @@ public class Employee
     public GenderEnum Gender { get; set; }
     [Column("hiring_date")]
     public DateTime HiringDate { get; set; }
-    [Column("email"), MaxLength(50)]
+    [Column("email", TypeName = "varchar(50)")]
     public string Email { get; set; }
-    [Column("phone_number"), MaxLength(20)]
+    [Column("phone_number", TypeName = "varchar(20)")]
     public string? PhoneNumber { get; set; }
 
     // Cardinality

@@ -6,9 +6,9 @@ namespace WebApp.Models;
 [Table("tb_m_accounts")]
 public class Account
 {
-    [Key, Column("employee_nik", TypeName = "nchar(5)")]
+    [Key, Column("employee_nik", TypeName = "char(5)")]
     public string EmployeeNIK { get; set; }
-    [Column("password"), MaxLength(255)]
+    [Column("password", TypeName = "varchar(255)")]
     public string Password { get; set; }
 
     // Cardinality
