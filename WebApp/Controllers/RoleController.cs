@@ -1,14 +1,14 @@
 using WebApp.Models;
-using WebApp.Repositories;
+using WebApp.Repositories.Contracts;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebApp.Controllers;
 
 public class RoleController : Controller
 {
-    private readonly RoleRepository _roleRepository;
+    private readonly IRoleRepository _roleRepository;
 
-    public RoleController(RoleRepository roleRepository)
+    public RoleController(IRoleRepository roleRepository)
     {
         _roleRepository = roleRepository;
     }

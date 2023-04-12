@@ -1,4 +1,4 @@
-@model IEnumerable<WebApp.ViewModels.EducationUniversityVM>
+@model IEnumerable<WebApp.Models.Education>
 
 @{
     ViewData["Title"] = "Index";
@@ -22,32 +22,33 @@
                 @Html.DisplayNameFor(model => model.GPA)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.UniversityName)
+                @Html.DisplayNameFor(model => model.UniversityId)
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Major)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Degree)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.GPA)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UniversityName)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Major)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Degree)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GPA)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UniversityId)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

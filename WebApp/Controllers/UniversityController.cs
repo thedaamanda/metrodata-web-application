@@ -1,17 +1,18 @@
 ﻿using WebApp.Models;
-using WebApp.Repositories;
+using WebApp.Repositories.Contracts;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebApp.Controllers;
 
 public class UniversityController : Controller
 {
-    private readonly UniversityRepository _universityRepository;
+    private readonly IUniversityRepository _universityRepository;
 
-    public UniversityController(UniversityRepository universityRepository)
+    public UniversityController(IUniversityRepository universityRepository)
     {
         _universityRepository = universityRepository;
     }
+
 
     [HttpGet]
     public IActionResult Index()

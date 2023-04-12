@@ -1,4 +1,4 @@
-@model WebApp.ViewModels.EducationUniversityVM
+@model WebApp.Models.Education
 
 @{
     ViewData["Title"] = "Create";
@@ -28,8 +28,8 @@
                 <span asp-validation-for="GPA" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="UniversityName" class="control-label"></label>
-                <select asp-for="UniversityName" class="form-control" asp-items="ViewBag.University"></select>
+                <label asp-for="UniversityId" class="control-label"></label>
+                <select asp-for="UniversityId" class="form-control" asp-items="ViewBag.UniversityId"></select>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />

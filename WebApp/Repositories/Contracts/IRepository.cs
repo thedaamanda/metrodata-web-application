@@ -1,11 +1,10 @@
 namespace WebApp.Repositories.Contracts;
 
-interface IRepository<Key, Entity> where Entity: class
+public interface IRepository<TKey, TEntity>
 {
-    IEnumerable<Entity> GetAll();
-    Entity? GetById(Key key);
-    IEnumerable<Entity> Search(string search);
-    int Insert(Entity entity);
-    int Update(Entity entity);
-    int Delete(Key key);
+    IEnumerable<TEntity> GetAll();
+    TEntity? GetById(TKey key);
+    int Insert(TEntity entity);
+    int Update(TEntity entity);
+    int Delete(TKey key);
 }

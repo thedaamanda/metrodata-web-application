@@ -1,14 +1,14 @@
 using WebApp.Models;
-using WebApp.Repositories;
+using WebApp.Repositories.Contracts;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebApp.Controllers;
 
 public class EmployeeController : Controller
 {
-    private readonly EmployeeRepository _employeeRepository;
+    private readonly IEmployeeRepository _employeeRepository;
 
-    public EmployeeController(EmployeeRepository employeeRepository)
+    public EmployeeController(IEmployeeRepository employeeRepository)
     {
         _employeeRepository = employeeRepository;
     }

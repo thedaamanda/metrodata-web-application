@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using WebApp.Context;
 using WebApp.Repositories;
+using WebApp.Repositories.Data;
 using WebApp.Repositories.Contracts;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,10 +14,10 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 builder.Services.AddDbContext<MyContext>(options => options.UseSqlServer(connectionString));
 
 // Configure Services for Dependency Injection
-builder.Services.AddScoped<UniversityRepository>();
-builder.Services.AddScoped<RoleRepository>();
-builder.Services.AddScoped<EmployeeRepository>();
-builder.Services.AddScoped<EducationRepository>();
+builder.Services.AddScoped<IUniversityRepository, UniversityRepository>();
+builder.Services.AddScoped<IRoleRepository, RoleRepository>();
+builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
+builder.Services.AddScoped<IEducationRepository, EducationRepository>();
 
 var app = builder.Build();
 
