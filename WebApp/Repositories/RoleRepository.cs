@@ -18,9 +18,9 @@ public class RoleRepository : IRepository<int, Role>
         return _context.Set<Role>().ToList();
     }
 
-    public Role? GetById(int id)
+    public Role? GetById(int key)
     {
-        return _context.Set<Role>().Find(id);
+        return _context.Set<Role>().Find(key);
     }
 
     public int Insert(Role role)
@@ -40,9 +40,9 @@ public class RoleRepository : IRepository<int, Role>
         return _context.SaveChanges();
     }
 
-    public int Delete(int id)
+    public int Delete(int key)
     {
-        var role = GetById(id);
+        var role = GetById(key);
         if (role == null)
         {
             return 0;

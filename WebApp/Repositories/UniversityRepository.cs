@@ -18,9 +18,9 @@ public class UniversityRepository : IRepository<int, University>
         return _context.Set<University>().ToList();
     }
 
-    public University? GetById(int id)
+    public University? GetById(int key)
     {
-        return _context.Set<University>().Find(id);
+        return _context.Set<University>().Find(key);
     }
 
     public int Insert(University university)
@@ -40,9 +40,9 @@ public class UniversityRepository : IRepository<int, University>
         return _context.SaveChanges();
     }
 
-    public int Delete(int id)
+    public int Delete(int key)
     {
-        var university = GetById(id);
+        var university = GetById(key);
         if (university == null)
         {
             return 0;

@@ -16,6 +16,7 @@ builder.Services.AddDbContext<MyContext>(options => options.UseSqlServer(connect
 builder.Services.AddScoped<UniversityRepository>();
 builder.Services.AddScoped<RoleRepository>();
 builder.Services.AddScoped<EmployeeRepository>();
+builder.Services.AddScoped<EducationRepository>();
 
 var app = builder.Build();
 

@@ -18,9 +18,9 @@ public class EmployeeRepository : IRepository<string, Employee>
         return _context.Set<Employee>().ToList();
     }
 
-    public Employee? GetById(string nik)
+    public Employee? GetById(string key)
     {
-        return _context.Set<Employee>().Find(nik);
+        return _context.Set<Employee>().Find(key);
     }
 
     public int Insert(Employee employee)
@@ -42,9 +42,9 @@ public class EmployeeRepository : IRepository<string, Employee>
         return _context.SaveChanges();
     }
 
-    public int Delete(string nik)
+    public int Delete(string key)
     {
-        var employee = GetById(nik);
+        var employee = GetById(key);
         if (employee == null)
         {
             return 0;

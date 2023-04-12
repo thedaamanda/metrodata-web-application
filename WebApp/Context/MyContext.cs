@@ -5,6 +5,14 @@ namespace WebApp.Context;
 
 public class MyContext : DbContext
 {
+    public DbSet<Account> Accounts { get; set; }
+    public DbSet<AccountRole> AccountRoles { get; set; }
+    public DbSet<Education> Educations { get; set; }
+    public DbSet<Employee> Employees { get; set; }
+    public DbSet<Profiling> Profilings { get; set; }
+    public DbSet<Role> Roles { get; set; }
+    public DbSet<University> Universities { get; set; }
+
     public MyContext(DbContextOptions<MyContext> option) : base(option)
     {
     }
@@ -17,13 +25,13 @@ public class MyContext : DbContext
             .HasMany(u => u.Educations)
             .WithOne(e => e.University)
             .HasForeignKey(a => a.UniversityId)
-            .OnDelete(DeleteBehavior.NoAction);
+            .OnDelete(DeleteBehavior.Cascade);
 
         modelBuilder.Entity<Education>()
             .HasOne<University>(e => e.University)
             .WithMany(u => u.Educations)
             .HasForeignKey(e => e.UniversityId)
-            .OnDelete(DeleteBehavior.NoAction);
+            .OnDelete(DeleteBehavior.Cascade);
 
         modelBuilder.Entity<Profiling>()
             .HasKey(p => p.EducationId);
@@ -61,12 +69,4 @@ public class MyContext : DbContext
             .HasForeignKey(ar => ar.RoleId)
             .OnDelete(DeleteBehavior.Cascade);
     }
-
-    public DbSet<Account> Accounts { get; set; }
-    public DbSet<AccountRole> AccountRoles { get; set; }
-    public DbSet<Education> Educations { get; set; }
-    public DbSet<Employee> Employees { get; set; }
-    public DbSet<Profiling> Profilings { get; set; }
-    public DbSet<Role> Roles { get; set; }
-    public DbSet<University> Universities { get; set; }
 }
