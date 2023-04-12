@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using WebApp.Models;
+using WebApp.ViewModels;
 
 namespace WebApp.Context;
 
@@ -68,5 +69,10 @@ public class MyContext : DbContext
             .WithMany(r => r.AccountRoles)
             .HasForeignKey(ar => ar.RoleId)
             .OnDelete(DeleteBehavior.Cascade);
+
+        modelBuilder.Entity<LoginVM>()
+            .HasNoKey();
     }
+
+    public DbSet<WebApp.ViewModels.LoginVM>? LoginVM { get; set; }
 }

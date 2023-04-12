@@ -7,7 +7,7 @@ public class GeneralRepository<TKey, TEntity, TContext> : IRepository<TKey, TEnt
     where TEntity : class
     where TContext : MyContext
 {
-    private readonly TContext _context;
+    protected readonly TContext _context;
 
     public GeneralRepository(TContext context)
     {

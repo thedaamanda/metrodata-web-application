@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using WebApp.Context;
-using WebApp.Repositories;
 using WebApp.Repositories.Data;
 using WebApp.Repositories.Contracts;
 
@@ -18,6 +17,7 @@ builder.Services.AddScoped<IUniversityRepository, UniversityRepository>();
 builder.Services.AddScoped<IRoleRepository, RoleRepository>();
 builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
 builder.Services.AddScoped<IEducationRepository, EducationRepository>();
+builder.Services.AddScoped<IAccountRepository, AccountRepository>();
 
 var app = builder.Build();
 

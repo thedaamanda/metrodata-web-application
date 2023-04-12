@@ -15,10 +15,10 @@ public class Employee
     public string FirstName { get; set; }
     [Column("last_name", TypeName = "varchar(50)")]
     public string? LastName { get; set; }
-    [Column("birthdate")]
+    [Column("birth_date")]
     public DateTime BirthDate { get; set; }
     [Column("gender")]
-    public GenderEnum Gender { get; set; }
+    public Gender Gender { get; set; }
     [Column("hiring_date")]
     public DateTime HiringDate { get; set; }
     [Column("email", TypeName = "varchar(50)")]
@@ -29,10 +29,10 @@ public class Employee
     // Cardinality
     public Profiling? Profiling { get; set; }
     public Account? Account { get; set; }
+}
 
-    public enum GenderEnum
-    {
-        Male,
-        Female
-    }
+public enum Gender
+{
+    Male,
+    Female
 }
