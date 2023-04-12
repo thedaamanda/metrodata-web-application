@@ -24,7 +24,7 @@ public class RegisterVM
     public string Major { get; set; }
     public string Degree { get; set; }
     [Range(0, 4, ErrorMessage = "GPA must be between {1} and {2}")]
-    public float GPA { get; set; }
+    public string GPA { get; set; }
     [Display(Name = "University Name")]
     public string UniversityName { get; set; }
     [DataType(DataType.Password)]

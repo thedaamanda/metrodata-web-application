@@ -2,6 +2,8 @@ using WebApp.Models;
 using WebApp.Repositories.Contracts;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Globalization;
+
 namespace WebApp.Controllers;
 
 public class EducationController : Controller

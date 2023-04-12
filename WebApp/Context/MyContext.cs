@@ -70,9 +70,8 @@ public class MyContext : DbContext
             .HasForeignKey(ar => ar.RoleId)
             .OnDelete(DeleteBehavior.Cascade);
 
-        modelBuilder.Entity<LoginVM>()
-            .HasNoKey();
+        modelBuilder.Entity<Education>()
+            .Property(e => e.GPA)
+            .HasPrecision(3, 2);
     }
-
-    public DbSet<WebApp.ViewModels.LoginVM>? LoginVM { get; set; }
 }

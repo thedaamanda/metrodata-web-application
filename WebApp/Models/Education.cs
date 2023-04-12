@@ -12,8 +12,8 @@ public class Education
     public string Major { get; set; }
     [Column("degree", TypeName = "varchar(10)")]
     public string Degree { get; set; }
-    [Column("gpa", TypeName = "decimal(3,2)")]
-    public double GPA { get; set; }
+    [Column("gpa", TypeName = "varchar(10)")]
+    public string GPA { get; set; }
     [Column("university_id")]
     public int UniversityId { get; set; }
 
