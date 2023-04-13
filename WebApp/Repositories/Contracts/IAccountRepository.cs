@@ -8,4 +8,5 @@ public interface IAccountRepository : IRepository<string, Account>
     int Register(RegisterVM registerVM);
     bool Login(LoginVM loginVM);
     bool CheckEmailPhone(string email, string phone);
+    UserdataVM GetUserData(string email);
 }

@@ -115,4 +115,24 @@ public class AccountRepository : GeneralRepository<string, Account, MyContext>, 
     {
         return _context.Employees.Where(e => e.Email == email || e.PhoneNumber == phone).SingleOrDefault() == null;
     }
+
+    public UserdataVM  GetUserData(string email)
+    {
+        var userdata = (from e in _context.Employees
+                                   join a in _context.Accounts
+                                   on e.NIK equals a.EmployeeNIK
+                                   join ar in _context.AccountRoles
+                                   on a.EmployeeNIK equals ar.AccountNIK
+                                   join r in _context.Roles
+                                   on ar.RoleId equals r.Id
+                                   where e.Email == email
+                                   select new UserdataVM
+                                   {
+                                       Email = e.Email,
+                                       FullName = String.Concat(e.FirstName, " ", e.LastName),
+                                       Role = r.Name
+                                   }).FirstOrDefault();
+
+        return userdata;
+    }
 }
