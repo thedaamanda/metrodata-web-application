@@ -69,9 +69,5 @@ public class MyContext : DbContext
             .WithMany(r => r.AccountRoles)
             .HasForeignKey(ar => ar.RoleId)
             .OnDelete(DeleteBehavior.Cascade);
-
-        modelBuilder.Entity<Education>()
-            .Property(e => e.GPA)
-            .HasPrecision(3, 2);
     }
 }

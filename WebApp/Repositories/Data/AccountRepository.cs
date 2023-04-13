@@ -1,5 +1,6 @@
 using WebApp.Context;
 using WebApp.Models;
+using WebApp.Handler;
 using WebApp.ViewModels;
 using WebApp.Repositories.Contracts;
 
@@ -64,7 +65,7 @@ public class AccountRepository : GeneralRepository<string, Account, MyContext>, 
 
                 var account = new Account {
                     EmployeeNIK = registerVM.NIK,
-                    Password = registerVM.Password,
+                    Password = Hashing.HashPassword(registerVM.Password)
                 };
                 _context.Accounts.Add(account);
                 _context.SaveChanges();
@@ -102,13 +103,13 @@ public class AccountRepository : GeneralRepository<string, Account, MyContext>, 
             (a, e) => new LoginVM {
                 Email = e.Email,
                 Password = a.Password,
-            }).FirstOrDefault(a => a.Email == loginVM.Email && a.Password == loginVM.Password);
+            }).SingleOrDefault(a => a.Email == loginVM.Email);
 
         if (getAccount is null) {
             return false;
         }
 
-        return true;
+        return Hashing.ValidatePassword(loginVM.Password, getAccount.Password);
     }
 
     public bool CheckEmailPhone(string email, string phone)
