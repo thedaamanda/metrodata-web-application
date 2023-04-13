@@ -35,7 +35,7 @@ public class AccountRepository : GeneralRepository<string, Account, MyContext>, 
 
                 // Validate if university already exist
                 if (_context.Universities.Any(u => u.Name == university.Name)) {
-                    university.Id = _context.Universities.FirstOrDefault(u => u.Name == university.Name).Id;
+                    university.Id = _context.Universities.First(u => u.Name == university.Name).Id;
                 } else {
                     _context.Universities.Add(university);
                     _context.SaveChanges();
@@ -88,7 +88,7 @@ public class AccountRepository : GeneralRepository<string, Account, MyContext>, 
             }
         } catch (Exception e) {
             transaction.Rollback();
-            throw new Exception(e.Message);
+            result = 0;
         }
 
         return result;
